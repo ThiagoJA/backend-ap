@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Object implements Serializable {
+public class Item implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -22,10 +22,10 @@ public class Object implements Serializable {
 //	private int object_flag; todo -- enum
 	private int reward;
 	
-	private Object() {
+	private Item() {
 	}
 
-	public Object(Long id, String name, String description, Instant date, int reward) {
+	public Item(Long id, String name, String description, Instant date, int reward) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -90,7 +90,7 @@ public class Object implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Object other = (Object) obj;
+		Item other = (Item) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

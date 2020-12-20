@@ -1,5 +1,6 @@
 package com.backend.achadosperdidos.config;
 
+import java.time.Instant;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.backend.achadosperdidos.entities.Address;
+import com.backend.achadosperdidos.entities.Item;
 import com.backend.achadosperdidos.entities.Tag;
 import com.backend.achadosperdidos.entities.User;
 import com.backend.achadosperdidos.repositories.AddressRepository;
+import com.backend.achadosperdidos.repositories.ItemRepository;
 import com.backend.achadosperdidos.repositories.TagRepository;
 import com.backend.achadosperdidos.repositories.UserRepository;
 
@@ -26,6 +29,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private TagRepository tagRepository;
+	
+	@Autowired
+	private ItemRepository itemRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -49,6 +55,18 @@ public class TestConfig implements CommandLineRunner {
 		Address a3 = new Address(null, 38420044, "Uberlândia", "Santa Monica", "Rua 3");
 		
 		addressRepository.saveAll(Arrays.asList(a1, a2, a3));
+		
+		
+		Item i1 = new Item(null, "Celular", "Moto g com a tela trincada", Instant.parse("2020-07-30T15:21:22Z"), 0);
+		Item i2 = new Item(null, "Carteira", "Carteira dobra azul", Instant.parse("2020-02-17T15:21:22Z"), 0);
+		Item i3 = new Item(null, "Documento", "RG numero 99999999", Instant.parse("2020-01-30T15:21:22Z"), 0);
+		Item i4 = new Item(null, "Bolsa", "Mochila preta encontrada na rua", Instant.parse("2020-04-30T15:21:22Z"), 0);
+		Item i5 = new Item(null, "Chave", "Chave de fusca", Instant.parse("2020-04-30T15:21:22Z"), 0);
+		Item i6 = new Item(null, "Relogio", "Relógio triton", Instant.parse("2020-02-17T15:21:22Z"), 0);
+		Item i7 = new Item(null, "Anel", "Aliança de ouro", Instant.parse("2020-01-30T15:21:22Z"), 0);
+		
+		itemRepository.saveAll(Arrays.asList(i1, i2, i3, i4, i5, i6, i7));
+		
 		
 	}
 }

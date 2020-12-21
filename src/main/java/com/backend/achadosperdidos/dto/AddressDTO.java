@@ -1,8 +1,13 @@
 package com.backend.achadosperdidos.dto;
 
 import java.io.Serializable;
+import java.util.Set;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import com.backend.achadosperdidos.entities.Address;
+import com.backend.achadosperdidos.entities.Item;
 
 public class AddressDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

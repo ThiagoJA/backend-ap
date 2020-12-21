@@ -1,11 +1,14 @@
 package com.backend.achadosperdidos.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User implements Serializable {
@@ -19,6 +22,9 @@ public class User implements Serializable {
 	private String phone;
 	private String password;
 	private String cpf;
+	
+	@OneToMany(mappedBy = "user")
+	private Set<Item> items;
 
 	public User() {
 	}
@@ -79,6 +85,10 @@ public class User implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Set<Item> getItems() {
+		return items;
 	}
 
 	@Override

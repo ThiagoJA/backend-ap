@@ -2,11 +2,20 @@ package com.backend.achadosperdidos.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Item implements Serializable {
@@ -19,8 +28,15 @@ public class Item implements Serializable {
 	private String name;
 	private String description;
 	private Instant date;
-//	private int object_flag; todo -- enum
 	private int reward;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "item_tag", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+	private Set<Tag> tags = new HashSet<>();
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="user_id", referencedColumnName="id", nullable=true) 
+	private User user;
 	
 	private Item() {
 	}
@@ -72,6 +88,14 @@ public class Item implements Serializable {
 
 	public void setReward(int reward) {
 		this.reward = reward;
+	}
+
+	public Set<Tag> getTags() {
+		return tags;
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 	@Override

@@ -1,7 +1,12 @@
 package com.backend.achadosperdidos.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.OneToMany;
+
+import com.backend.achadosperdidos.entities.Item;
 import com.backend.achadosperdidos.entities.User;
 
 public class UserDTO implements Serializable {
@@ -13,6 +18,9 @@ public class UserDTO implements Serializable {
 	private String phone;
 	private String password;
 	private String cpf;
+	
+	@OneToMany(mappedBy = "user")
+	private Set<Item> items;
 	
 	private UserDTO() {
 	}
@@ -81,6 +89,10 @@ public class UserDTO implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Set<Item> getItems() {
+		return items;
 	}
 
 	@Override

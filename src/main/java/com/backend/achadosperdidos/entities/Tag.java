@@ -1,11 +1,15 @@
 package com.backend.achadosperdidos.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Tag implements Serializable {
@@ -15,6 +19,9 @@ public class Tag implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	
+	@ManyToMany(mappedBy = "tags")
+	private Set<Item> items = new HashSet<>();
 	
 	private Tag() {
 	}
@@ -39,6 +46,10 @@ public class Tag implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Set<Item> getItems() {
+		return items;
 	}
 
 	@Override

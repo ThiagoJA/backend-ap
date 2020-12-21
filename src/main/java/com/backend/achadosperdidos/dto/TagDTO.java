@@ -1,7 +1,14 @@
 package com.backend.achadosperdidos.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+
+import com.backend.achadosperdidos.entities.Item;
 import com.backend.achadosperdidos.entities.Tag;
 
 public class TagDTO implements Serializable {
@@ -9,6 +16,9 @@ public class TagDTO implements Serializable {
 
 	private Long id;
 	private String name;
+	
+	@ManyToMany(mappedBy = "tags")
+	private Set<Item> items = new HashSet<>();
 	
 	private TagDTO() {
 	}
@@ -22,6 +32,7 @@ public class TagDTO implements Serializable {
 	public TagDTO(Tag entity) {
 		this.id = entity.getId();
 		this.name = entity.getName();
+		this.items = entity.getItems();
 	}
 
 	public Long getId() {
@@ -38,6 +49,10 @@ public class TagDTO implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<Item> getItems() {
+		return items;
 	}
 
 	@Override

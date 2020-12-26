@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.backend.achadosperdidos.entities.Item;
@@ -18,9 +19,6 @@ public class UserDTO implements Serializable {
 	private String phone;
 	private String password;
 	private String cpf;
-	
-	@OneToMany(mappedBy = "user")
-	private Set<Item> items;
 	
 	private UserDTO() {
 	}
@@ -91,35 +89,9 @@ public class UserDTO implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Set<Item> getItems() {
-		return items;
+	public User toEntity() {
+		return new User(id, name, email, phone, password, cpf);
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserDTO other = (UserDTO) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-	
 	
 	
 }

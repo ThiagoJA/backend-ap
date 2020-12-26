@@ -1,10 +1,12 @@
 package com.backend.achadosperdidos.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,8 +25,8 @@ public class User implements Serializable {
 	private String password;
 	private String cpf;
 	
-	@OneToMany(mappedBy = "user")
-	private Set<Item> items;
+	@OneToMany(targetEntity=Item.class, mappedBy="user",cascade=CascadeType.ALL, fetch = FetchType.LAZY)    
+	private List<Item> items = new ArrayList<>();
 
 	public User() {
 	}
@@ -87,10 +89,6 @@ public class User implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Set<Item> getItems() {
-		return items;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -115,7 +113,6 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-	
 	
 
 }

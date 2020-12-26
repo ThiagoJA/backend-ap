@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class Tag implements Serializable {
@@ -48,10 +47,6 @@ public class Tag implements Serializable {
 		this.name = name;
 	}
 	
-	public Set<Item> getItems() {
-		return items;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

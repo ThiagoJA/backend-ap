@@ -5,7 +5,6 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Item implements Serializable {
@@ -34,8 +32,8 @@ public class Item implements Serializable {
 	@JoinTable(name = "item_tag", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
 	private Set<Tag> tags = new HashSet<>();
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="user_id", referencedColumnName="id", nullable=true) 
+	@ManyToOne()
+	@JoinColumn(name="item_user", referencedColumnName = "id", insertable = false, updatable = false)
 	private User user;
 	
 	private Item() {
@@ -93,9 +91,13 @@ public class Item implements Serializable {
 	public Set<Tag> getTags() {
 		return tags;
 	}
-
+	
 	public User getUser() {
 		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

@@ -2,15 +2,7 @@ package com.backend.achadosperdidos.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
 import com.backend.achadosperdidos.entities.Item;
 import com.backend.achadosperdidos.entities.Tag;
@@ -24,25 +16,21 @@ public class ItemDTO implements Serializable {
 	private String description;
 	private Instant date;
 	private int reward;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "item_tag", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
-	private Set<Tag> tags = new HashSet<>();
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="user_id", referencedColumnName="id", nullable=true) 
+	private Set<Tag> tags;
 	private User user;
-	
+
 	private ItemDTO() {
 	}
 
-	public ItemDTO(Long id, String name, String description, Instant date, int reward) {
+	public ItemDTO(Long id, String name, String description, Instant date, int reward, Set<Tag> tags, User user) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.date = date;
 		this.reward = reward;
+		this.tags = tags;
+		this.user = user;
 	}
 	
 	public ItemDTO(Item entity) {
@@ -52,6 +40,7 @@ public class ItemDTO implements Serializable {
 		this.date = entity.getDate();
 		this.reward = entity.getReward();
 		this.tags = entity.getTags();
+		this.user = entity.getUser();
 	}
 
 	public Long getId() {
@@ -93,7 +82,7 @@ public class ItemDTO implements Serializable {
 	public void setReward(int reward) {
 		this.reward = reward;
 	}
-
+	
 	public Set<Tag> getTags() {
 		return tags;
 	}
@@ -101,32 +90,13 @@ public class ItemDTO implements Serializable {
 	public User getUser() {
 		return user;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	@Override
-	public boolean equals(java.lang.Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ItemDTO other = (ItemDTO) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public Item toEntity() {
+		return new Item(id, name, description, date, reward);
 	}
-
-
 
 }

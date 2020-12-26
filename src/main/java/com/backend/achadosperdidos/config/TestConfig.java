@@ -74,6 +74,14 @@ public class TestConfig implements CommandLineRunner {
 		i6.getTags().add(t6);
 		i7.getTags().add(t7);
 		
+		i1.setUser(u1);
+		i2.setUser(u2);
+		i3.setUser(u1);
+		i4.setUser(u2);
+		i5.setUser(u1);
+		i6.setUser(u2);
+		i7.setUser(u1);
+		
 		itemRepository.saveAll(Arrays.asList(i1, i2, i3, i4, i5, i6, i7));
 		
 		

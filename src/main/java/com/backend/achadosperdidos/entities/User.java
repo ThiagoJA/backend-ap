@@ -25,8 +25,8 @@ public class User implements Serializable {
 	private String password;
 	private String cpf;
 	
-	@OneToMany(targetEntity=Item.class, mappedBy="user",cascade=CascadeType.ALL, fetch = FetchType.LAZY)    
-	private List<Item> items = new ArrayList<>();
+	@OneToMany   
+	private List<Item> items;
 
 	public User() {
 	}

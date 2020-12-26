@@ -33,7 +33,6 @@ public class Item implements Serializable {
 	private Set<Tag> tags = new HashSet<>();
 	
 	@ManyToOne()
-	@JoinColumn(name="item_user", referencedColumnName = "id", insertable = false, updatable = false)
 	private User user;
 	
 	private Item() {

@@ -67,6 +67,7 @@ public class TestConfig implements CommandLineRunner {
 		Item i7 = new Item(null, "Anel", "Aliança de ouro", Instant.parse("2020-01-30T15:21:22Z"), 0);
 		
 		i1.getTags().add(t1);
+		i1.getTags().add(t2);
 		i2.getTags().add(t2);
 		i3.getTags().add(t3);
 		i4.getTags().add(t4);

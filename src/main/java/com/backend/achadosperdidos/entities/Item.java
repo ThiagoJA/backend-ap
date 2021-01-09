@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Item implements Serializable {
@@ -35,9 +34,6 @@ public class Item implements Serializable {
 	
 	@ManyToOne()
 	private User user;
-	
-	@OneToOne
-	private Address adrress;
 	
 	private Item() {
 	}
@@ -101,14 +97,6 @@ public class Item implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Address getAdrress() {
-		return adrress;
-	}
-
-	public void setAdrress(Address adrress) {
-		this.adrress = adrress;
 	}
 
 	@Override

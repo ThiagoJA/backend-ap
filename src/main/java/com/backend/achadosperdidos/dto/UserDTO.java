@@ -1,7 +1,13 @@
 package com.backend.achadosperdidos.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.backend.achadosperdidos.entities.Item;
 import com.backend.achadosperdidos.entities.User;
 
 public class UserDTO implements Serializable {

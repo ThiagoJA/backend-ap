@@ -1,11 +1,13 @@
 package com.backend.achadosperdidos.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,9 +22,6 @@ public class Address implements Serializable {
 	private String city;
 	private String district;
 	private String street;
-	
-	@OneToOne
-	private Item item;
 
 	public Address() {
 	}

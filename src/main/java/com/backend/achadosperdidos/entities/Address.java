@@ -22,6 +22,9 @@ public class Address implements Serializable {
 	private String city;
 	private String district;
 	private String street;
+	
+	@OneToOne
+	private Item item;
 
 	public Address() {
 	}

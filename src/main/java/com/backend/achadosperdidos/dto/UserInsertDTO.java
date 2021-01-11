@@ -3,7 +3,9 @@ package com.backend.achadosperdidos.dto;
 import java.io.Serializable;
 
 import com.backend.achadosperdidos.entities.User;
+import com.backend.achadosperdidos.services.validation.UserInsertValid;
 
+@UserInsertValid
 public class UserInsertDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 

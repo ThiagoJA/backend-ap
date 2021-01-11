@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Item implements Serializable {
@@ -27,6 +28,9 @@ public class Item implements Serializable {
 	private String description;
 	private Instant date;
 	private int reward;
+	
+	@OneToOne
+	private Address adrress;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "item_tag", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
@@ -97,6 +101,14 @@ public class Item implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public Address getAdrress() {
+		return adrress;
+	}
+
+	public void setAdrress(Address adrress) {
+		this.adrress = adrress;
 	}
 
 	@Override

@@ -16,8 +16,8 @@ import com.backend.achadosperdidos.dto.AddressDTO;
 import com.backend.achadosperdidos.dto.AddressInsertDTO;
 import com.backend.achadosperdidos.entities.Address;
 import com.backend.achadosperdidos.repositories.AddressRepository;
-import com.backend.achadosperdidos.services.exceptions.DatabaseException;
-import com.backend.achadosperdidos.services.exceptions.ResourceNotFoundException;
+import com.backend.achadosperdidos.resources.exeptions.DatabaseException;
+import com.backend.achadosperdidos.resources.exeptions.ResourceNotFoundException;
 
 @Service
 public class AddressService {

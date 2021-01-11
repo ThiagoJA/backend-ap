@@ -16,8 +16,8 @@ import com.backend.achadosperdidos.dto.TagDTO;
 import com.backend.achadosperdidos.dto.TagInsertDTO;
 import com.backend.achadosperdidos.entities.Tag;
 import com.backend.achadosperdidos.repositories.TagRepository;
-import com.backend.achadosperdidos.services.exceptions.DatabaseException;
-import com.backend.achadosperdidos.services.exceptions.ResourceNotFoundException;
+import com.backend.achadosperdidos.resources.exeptions.DatabaseException;
+import com.backend.achadosperdidos.resources.exeptions.ResourceNotFoundException;
 
 @Service
 public class TagService {

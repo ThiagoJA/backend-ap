@@ -1,8 +1,7 @@
 package com.backend.achadosperdidos.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,7 @@ public class Tag implements Serializable {
 	private String name;
 	
 	@ManyToMany(mappedBy = "tags")
-	private Set<Item> items = new HashSet<>();
+	private List<Item> items;
 	
 	private Tag() {
 	}

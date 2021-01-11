@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Set;
 
+import com.backend.achadosperdidos.entities.Address;
 import com.backend.achadosperdidos.entities.Item;
 import com.backend.achadosperdidos.entities.Tag;
 import com.backend.achadosperdidos.entities.User;
@@ -18,11 +19,13 @@ public class ItemDTO implements Serializable {
 	private int reward;
 	private Set<Tag> tags;
 	private User user;
+	
+	private Address address;
 
 	private ItemDTO() {
 	}
 
-	public ItemDTO(Long id, String name, String description, Instant date, int reward, Set<Tag> tags, User user) {
+	public ItemDTO(Long id, String name, String description, Instant date, int reward, Set<Tag> tags, User user, Address address) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -31,6 +34,7 @@ public class ItemDTO implements Serializable {
 		this.reward = reward;
 		this.tags = tags;
 		this.user = user;
+		this.address = address;
 	}
 	
 	public ItemDTO(Item entity) {
@@ -41,6 +45,7 @@ public class ItemDTO implements Serializable {
 		this.reward = entity.getReward();
 		this.tags = entity.getTags();
 		this.user = entity.getUser();
+		this.address = entity.getAdrress();
 	}
 
 	public Long getId() {
@@ -93,6 +98,14 @@ public class ItemDTO implements Serializable {
 	
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public Item toEntity() {

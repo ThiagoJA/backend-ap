@@ -16,8 +16,8 @@ import com.backend.achadosperdidos.dto.UserDTO;
 import com.backend.achadosperdidos.dto.UserInsertDTO;
 import com.backend.achadosperdidos.entities.User;
 import com.backend.achadosperdidos.repositories.UserRepository;
-import com.backend.achadosperdidos.services.exceptions.DatabaseException;
-import com.backend.achadosperdidos.services.exceptions.ResourceNotFoundException;
+import com.backend.achadosperdidos.resources.exeptions.DatabaseException;
+import com.backend.achadosperdidos.resources.exeptions.ResourceNotFoundException;
 
 @Service
 public class UserService {

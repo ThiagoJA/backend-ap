@@ -1,22 +1,28 @@
 package com.backend.achadosperdidos.dto;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
-import com.backend.achadosperdidos.entities.Item;
+import org.hibernate.validator.constraints.Length;
+
 import com.backend.achadosperdidos.entities.User;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	@NotEmpty(message = "can't be empty")
+	@Length(min = 3, max = 80, message = "Length must be between 5 and 80")
 	private String name;
+	@NotEmpty(message = "can't be empty")
+	@Email
 	private String email;
+	@NotEmpty(message = "can't be empty")
+	@Length(min = 8, max = 20, message = "Length must be between 8 and 20")
 	private String phone;
+	@NotEmpty(message = "can't be empty")
 	private String password;
 	private String cpf;
 	

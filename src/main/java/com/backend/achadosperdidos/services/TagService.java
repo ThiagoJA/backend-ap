@@ -29,7 +29,7 @@ public class TagService {
 		List<Tag> list = repository.findAll();
 		return list.stream().map(e -> new TagDTO(e)).collect(Collectors.toList());
 	}
-	
+
 	public TagDTO findById(Long id) {
 		Optional<Tag> obj = repository.findById(id);
 		Tag entity = obj.orElseThrow(() -> new ResourceNotFoundException(id));

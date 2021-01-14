@@ -49,7 +49,7 @@ public class UserService {
 			return "logado";
 		}
 		else {
-			return "usuário ou senha inválidos";
+			return "erro";
 		}
 	}
 	

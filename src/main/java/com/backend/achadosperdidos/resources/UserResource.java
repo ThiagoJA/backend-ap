@@ -65,6 +65,13 @@ public class UserResource {
 		dto = service.update(cpf, dto);
 		return ResponseEntity.ok().body(dto);
 	}
+	
+	@GetMapping(value = "login/{email}/{password}")
+	public ResponseEntity<String> findByEmail(@PathVariable String email, @PathVariable String password) {
+		String dto = service.login(email, password);
+		return ResponseEntity.ok().body(dto);
+	}
+	
 
 	
 }

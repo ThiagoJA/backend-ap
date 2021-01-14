@@ -42,6 +42,17 @@ public class UserService {
 		return new UserDTO(entity);
 	}
 	
+	public String login(String email, String password) {
+		Optional<User> obj = Optional.ofNullable(repository.findByEmail(email));
+		User entity = obj.orElseThrow(() -> new ResourceNotFoundException(email));
+		if (entity.getPassword().equals(password)) {
+			return "logado";
+		}
+		else {
+			return "usuário ou senha inválidos";
+		}
+	}
+	
 	public UserDTO insert(UserInsertDTO dto) {
 		User entity = dto.toEntity();
 		entity = repository.save(entity);

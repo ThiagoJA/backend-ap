@@ -42,14 +42,14 @@ public class UserService {
 		return new UserDTO(entity);
 	}
 	
-	public String login(String email, String password) {
+	public UserDTO login(String email, String password) {
 		Optional<User> obj = Optional.ofNullable(repository.findByEmail(email));
 		User entity = obj.orElseThrow(() -> new ResourceNotFoundException(email));
 		if (entity.getPassword().equals(password)) {
-			return "logado";
+			return new UserDTO(entity);
 		}
 		else {
-			return "erro";
+			return null;
 		}
 	}
 	

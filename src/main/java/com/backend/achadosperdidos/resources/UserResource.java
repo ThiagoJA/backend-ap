@@ -66,9 +66,9 @@ public class UserResource {
 		return ResponseEntity.ok().body(dto);
 	}
 	
-	@GetMapping(value = "login/{email}/{password}")
-	public ResponseEntity<String> findByEmail(@PathVariable String email, @PathVariable String password) {
-		String dto = service.login(email, password);
+	@PostMapping(value = "login/{email}/{password}")
+	public ResponseEntity<UserDTO> findByEmail(@PathVariable String email, @PathVariable String password) {
+		UserDTO dto = service.login(email, password);
 		return ResponseEntity.ok().body(dto);
 	}
 	

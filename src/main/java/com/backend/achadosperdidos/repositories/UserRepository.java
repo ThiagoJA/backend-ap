@@ -7,4 +7,5 @@ import com.backend.achadosperdidos.entities.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByEmail(String email);
+	User findByCpf(String cpf);
 }

@@ -40,6 +40,12 @@ public class UserResource {
 		return ResponseEntity.ok().body(dto);
 	}
 	
+	@GetMapping(value = "findByCpf/{cpf}")
+	public ResponseEntity<UserDTO> findByCpf(@PathVariable String cpf) {
+		UserDTO dto = service.findByCpf(cpf);
+		return ResponseEntity.ok().body(dto);
+	}
+	
 	@PostMapping
 	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO dto) {
 		UserDTO newDto = service.insert(dto);
@@ -54,10 +60,11 @@ public class UserResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO dto) {
-		dto = service.update(id, dto);
+	@PutMapping(value = "/{cpf}")
+	public ResponseEntity<UserDTO> update(@PathVariable String cpf, @RequestBody UserDTO dto) {
+		dto = service.update(cpf, dto);
 		return ResponseEntity.ok().body(dto);
 	}
+
 	
 }

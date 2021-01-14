@@ -43,6 +43,7 @@ public class UserDTO implements Serializable {
 		this.id = entity.getId();
 		this.name = entity.getName();
 		this.email = entity.getEmail();
+		this.password = entity.getPassword();
 		this.phone = entity.getPhone();
 		this.cpf = entity.getCpf();
 	}

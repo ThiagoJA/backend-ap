@@ -36,6 +36,12 @@ public class UserService {
 		return new UserDTO(entity);
 	}
 	
+	public UserDTO findByCpf(String cpf) {
+		Optional<User> obj = Optional.of(repository.findByCpf(cpf));
+		User entity = obj.orElseThrow(() -> new ResourceNotFoundException(cpf));
+		return new UserDTO(entity);
+	}
+	
 	public UserDTO insert(UserInsertDTO dto) {
 		User entity = dto.toEntity();
 		entity = repository.save(entity);
@@ -53,14 +59,14 @@ public class UserService {
 	}
 	
 	@Transactional
-	public UserDTO update(Long id, UserDTO dto) {
+	public UserDTO update(String cpf, UserDTO dto) {
 		try {
-			User entity = repository.getOne(id);
+			User entity = repository.findByCpf(cpf);
 			updateData(entity, dto);
 			entity = repository.save(entity);
 			return new UserDTO(entity);
 		} catch(EntityNotFoundException e) {
-			throw new ResourceNotFoundException(id);
+			throw new ResourceNotFoundException(cpf);
 		}
 	}
 
@@ -68,6 +74,7 @@ public class UserService {
 		entity.setName(dto.getName());
 		entity.setEmail(dto.getEmail());
 		entity.setPhone(dto.getPhone());
+		entity.setPassword(dto.getPassword());
 	}
 
 }
